@@ -1,3 +1,11 @@
+# RoadJust
+
+> Road Fleet: RoadJust — Command runner — just deploy --node=pi-12. PROPRIETARY BlackRoad OS.
+
+Part of the [BlackRoad OS](https://blackroad.io) ecosystem — [BlackRoad-OS-Inc](https://github.com/BlackRoad-OS-Inc)
+
+---
+
 <div align=right>Table of Contents↗️</div>
 
 <h1 align=center><code>just</code></h1>
@@ -838,7 +846,8 @@ error.
 The heading text can be customized with `--list-heading`:
 
 ```console
-$ just --list --list-heading $'Cool stuff…\n'
+$ just --list --list-heading $'Cool stuff…
+'
 Cool stuff…
     test
     build
@@ -1534,14 +1543,15 @@ inside strings.
 Double-quoted strings support escape sequences:
 
 ```just
-carriage-return   := "\r"
+carriage-return   := ""
 double-quote      := "\""
-newline           := "\n"
+newline           := "
+"
 no-newline        := "\
 "
-slash             := "\\"
-tab               := "\t"
-unicode-codepoint := "\u{1F916}"
+slash             := "\"
+tab               := "	"
+unicode-codepoint := " {1F916}"
 ```
 
 ```console
@@ -1556,7 +1566,7 @@ tab               := "     "
 unicode-codepoint := "🤖"
 ```
 
-The unicode character escape sequence `\u{…}`<sup>1.36.0</sup> accepts up to
+The unicode character escape sequence ` {…}`<sup>1.36.0</sup> accepts up to
 six hex digits.
 
 Strings may contain line breaks:
@@ -1574,12 +1584,14 @@ goodbye
 Single-quoted strings do not recognize escape sequences:
 
 ```just
-escapes := '\t\n\r\"\\'
+escapes := '	
+\"\'
 ```
 
 ```console
 $ just --evaluate
-escapes := "\t\n\r\"\\"
+escapes := "	
+\"\"
 ```
 
 Indented versions of both single- and double-quoted strings, delimited by
@@ -1588,13 +1600,18 @@ stripped of a leading line break, and leading whitespace common to all
 non-blank lines:
 
 ```just
-# this string will evaluate to `foo\nbar\n`
+# this string will evaluate to `foo
+bar
+`
 x := '''
   foo
   bar
 '''
 
-# this string will evaluate to `abc\n  wuv\nxyz\n`
+# this string will evaluate to `abc
+  wuv
+xyz
+`
 y := """
   abc
     wuv
@@ -2142,30 +2159,30 @@ A number of constants are predefined:
 | `HEXUPPER`<sup>1.27.0</sup> | `"0123456789ABCDEF"` |  |
 | `PATH_SEP`<sup>1.41.0</sup> | `"/"` | `"\"` |
 | `PATH_VAR_SEP`<sup>1.41.0</sup> | `":"` | `";"` |
-| `CLEAR`<sup>1.37.0</sup> | `"\ec"` |  |
-| `NORMAL`<sup>1.37.0</sup> | `"\e[0m"` |  |
-| `BOLD`<sup>1.37.0</sup> | `"\e[1m"` |  |
-| `ITALIC`<sup>1.37.0</sup> | `"\e[3m"` |  |
-| `UNDERLINE`<sup>1.37.0</sup> | `"\e[4m"` |  |
-| `INVERT`<sup>1.37.0</sup> | `"\e[7m"` |  |
-| `HIDE`<sup>1.37.0</sup> | `"\e[8m"` |  |
-| `STRIKETHROUGH`<sup>1.37.0</sup> | `"\e[9m"` |  |
-| `BLACK`<sup>1.37.0</sup> | `"\e[30m"` |  |
-| `RED`<sup>1.37.0</sup> | `"\e[31m"` |  |
-| `GREEN`<sup>1.37.0</sup> | `"\e[32m"` |  |
-| `YELLOW`<sup>1.37.0</sup> | `"\e[33m"` |  |
-| `BLUE`<sup>1.37.0</sup> | `"\e[34m"` |  |
-| `MAGENTA`<sup>1.37.0</sup> | `"\e[35m"` |  |
-| `CYAN`<sup>1.37.0</sup> | `"\e[36m"` |  |
-| `WHITE`<sup>1.37.0</sup> | `"\e[37m"` |  |
-| `BG_BLACK`<sup>1.37.0</sup> | `"\e[40m"` |  |
-| `BG_RED`<sup>1.37.0</sup> | `"\e[41m"` |  |
-| `BG_GREEN`<sup>1.37.0</sup> | `"\e[42m"` |  |
-| `BG_YELLOW`<sup>1.37.0</sup> | `"\e[43m"` |  |
-| `BG_BLUE`<sup>1.37.0</sup> | `"\e[44m"` |  |
-| `BG_MAGENTA`<sup>1.37.0</sup> | `"\e[45m"` |  |
-| `BG_CYAN`<sup>1.37.0</sup> | `"\e[46m"` |  |
-| `BG_WHITE`<sup>1.37.0</sup> | `"\e[47m"` |  |
+| `CLEAR`<sup>1.37.0</sup> | `"c"` |  |
+| `NORMAL`<sup>1.37.0</sup> | `"[0m"` |  |
+| `BOLD`<sup>1.37.0</sup> | `"[1m"` |  |
+| `ITALIC`<sup>1.37.0</sup> | `"[3m"` |  |
+| `UNDERLINE`<sup>1.37.0</sup> | `"[4m"` |  |
+| `INVERT`<sup>1.37.0</sup> | `"[7m"` |  |
+| `HIDE`<sup>1.37.0</sup> | `"[8m"` |  |
+| `STRIKETHROUGH`<sup>1.37.0</sup> | `"[9m"` |  |
+| `BLACK`<sup>1.37.0</sup> | `"[30m"` |  |
+| `RED`<sup>1.37.0</sup> | `"[31m"` |  |
+| `GREEN`<sup>1.37.0</sup> | `"[32m"` |  |
+| `YELLOW`<sup>1.37.0</sup> | `"[33m"` |  |
+| `BLUE`<sup>1.37.0</sup> | `"[34m"` |  |
+| `MAGENTA`<sup>1.37.0</sup> | `"[35m"` |  |
+| `CYAN`<sup>1.37.0</sup> | `"[36m"` |  |
+| `WHITE`<sup>1.37.0</sup> | `"[37m"` |  |
+| `BG_BLACK`<sup>1.37.0</sup> | `"[40m"` |  |
+| `BG_RED`<sup>1.37.0</sup> | `"[41m"` |  |
+| `BG_GREEN`<sup>1.37.0</sup> | `"[42m"` |  |
+| `BG_YELLOW`<sup>1.37.0</sup> | `"[43m"` |  |
+| `BG_BLUE`<sup>1.37.0</sup> | `"[44m"` |  |
+| `BG_MAGENTA`<sup>1.37.0</sup> | `"[45m"` |  |
+| `BG_CYAN`<sup>1.37.0</sup> | `"[46m"` |  |
+| `BG_WHITE`<sup>1.37.0</sup> | `"[47m"` |  |
 
 ```just
 @foo:
@@ -2177,11 +2194,11 @@ $ just foo
 0123456789abcdef
 ```
 
-Constants starting with `\e` are
+Constants starting with `` are
 [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code).
 
 `CLEAR` clears the screen, similar to the `clear` command. The rest are of the
-form `\e[Nm`, where `N` is an integer, and set terminal display attributes.
+form `[Nm`, where `N` is an integer, and set terminal display attributes.
 
 Terminal display attribute escape sequences can be combined, for example text
 weight `BOLD`, text style `STRIKETHROUGH`, foreground color `CYAN`, and
@@ -2425,7 +2442,11 @@ Indented backticks, delimited by three backticks, are de-indented in the same
 manner as indented strings:
 
 ````just
-# This backtick evaluates the command `echo foo\necho bar\n`, which produces the value `foo\nbar\n`.
+# This backtick evaluates the command `echo foo
+echo bar
+`, which produces the value `foo
+bar
+`.
 stuff := ```
     echo foo
     echo bar
@@ -3165,7 +3186,8 @@ js:
 
 perl:
   #!/usr/bin/env perl
-  print "Larry Wall says Hi!\n";
+  print "Larry Wall says Hi!
+";
 
 sh:
   #!/usr/bin/env sh
@@ -3639,7 +3661,8 @@ Available recipes:
 $ just --show perl
 perl:
   #!/usr/bin/env perl
-  print "Larry Wall says Hi!\n";
+  print "Larry Wall says Hi!
+";
 $ just --show polyglot
 polyglot: python js perl sh ruby
 ```
@@ -4571,7 +4594,7 @@ Now, if you have a recipe called `foo` in `~/.user.justfile`, you can just type
 
 I'm pretty sure that nobody actually uses this feature, but it's there.
 
-¯\\\_(ツ)\_/¯
+¯\\_(ツ)\_/¯
 
 ##### Customization
 
@@ -4650,7 +4673,8 @@ Given the above `justfile`, after running `just fetch`, the recipes in
 ### Printing Complex Strings
 
 `echo` can be used to print strings, but because it processes escape sequences,
-like `\n`, and different implementations of `echo` recognize different escape
+like `
+`, and different implementations of `echo` recognize different escape
 sequences, using `printf` is often a better choice.
 
 `printf` takes a C-style format string and any number of arguments, which are
@@ -4671,7 +4695,8 @@ all its various escape sequences and quotes undisturbed:
 ```just
 export FOO := '''
   a complicated string with
-  some dis\tur\bi\ng escape sequences
+  some dis	uri
+g escape sequences
   and "quotes" of 'different' kinds
 '''
 
